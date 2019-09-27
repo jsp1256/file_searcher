@@ -1,3 +1,5 @@
+#ifndef PLATFORM_H
+#define PLATFORM_H
 #ifdef _WIN32
    #define USE_WINDOWS_COMMON
    
@@ -31,3 +33,4 @@
 #else
 #   error "Unknown compiler"
 #endif
+#endif //PLATFORM_H
