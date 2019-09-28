@@ -6,6 +6,8 @@
 
 #include "define_common.h"
 
+#include "lib_str.h"
+
 /*
  * @brief 获取目录下所有的文件名，不获取目录名
  * @details 实现时如果使用了系统依赖的函数需要使用相关的宏来区分
@@ -43,7 +45,7 @@ void print_local_dir_once(const std::list<std::string> &dir_name_list);
  * @param data_type 数据类型
  * @return 返回SUCCESS表示成功，FAIL表示失败
  */
-int write_to_txt_file(const std::string txt_file_path, const void *data, const std::string data_type)
+int write_to_txt_file(const std::string txt_file_path, const void *data, const std::string data_type);
 
 /*
  * @brief 将数据写入xlsx文件中保存
@@ -52,5 +54,23 @@ int write_to_txt_file(const std::string txt_file_path, const void *data, const s
  * @param data_type 数据类型
  * @return 返回SUCCESS表示成功，FAIL表示失败
  */
-int write_to_xlsx_file(const std::string xlsx_file_path, const void *data, const std:: string data_type)
+int write_to_xlsx_file(const std::string xlsx_file_path, const void *data, const std::string data_type);
+
+/*
+ * @brief 根据后缀名查找文件，例如：exe查早后缀为.exe的文件
+ * @param file_name_list 待查找的文件列表
+ * @param extension 后缀名
+ * @param file_name_list_find 查找到的文件存储列表
+ * @return 成功返回查找到的文件个数，失败返回-1
+ */
+int scan_files_by_extension(const std::string &file_name_list, const std::string extension, std::string &file_name_list_find);
+
+/*
+ * @brief 根据文件名查找文件，支持使用?或*正则匹配，?匹配一个，*匹配0到多个
+ * @param file_name_list 待查找的文件列表
+ * @param name 文件名
+ * @param file_name_list_find 查找到的文件存储列表
+ * @return 成功返回查找到的文件个数，失败返回-1
+ */
+int search_file_by_name(const std::string &file_name_list, const std::string name, std::string &file_name_list_find);
 #endif //LIB_SEARCH_H

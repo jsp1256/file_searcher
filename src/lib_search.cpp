@@ -32,8 +32,23 @@ int write_to_txt_file(const std::string txt_file_path, const void *data, const s
 	return SUCCESS;
 }
 
-int write_to_xlsx_file(const std::string xlsx_file_path, const void *data, const std:: string data_type)
+int write_to_xlsx_file(const std::string xlsx_file_path, const void *data, const std::string data_type)
 {
 	//TODO need to finish
-	return SUCCESS;
+	int size = FAIL;
+	return size;
+}
+
+int scan_files_by_extension(const std::string &file_name_list, const std::string extension, std::string &file_name_list_find)
+{
+	//TODO need to finish
+	int size = FAIL;
+	return size;
+}
+
+int search_file_by_name(const std::string &file_name_list, const std::string name, std::string &file_name_list_find)
+{
+	//TODO need to finish
+	int size = FAIL;
+	return size;
 }
