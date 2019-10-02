@@ -1,5 +1,6 @@
 #ifndef LIB_STR_H
 #define LIB_STR_H
+//内部私有头文件
 #ifdef __cplusplus
 extern "C" {
 #endif

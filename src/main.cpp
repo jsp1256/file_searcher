@@ -1,7 +1,12 @@
-#include "main.h"
+#include "lib_search.h"
 
-int main()
+
+using namespace std;
+
+
+int main(int argc, char* argv[])
 {
-	std::printf("hello world\n");
-	return 0;
+
+    return 0;
 }
+

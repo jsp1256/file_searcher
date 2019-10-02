@@ -6,25 +6,33 @@
 
 #include "define_common.h"
 
-#include "lib_str.h"
+/*
+ * @brief 扫描开始执行的函数
+ * @param  dir_node 存储节点
+ * @return 成功返回SUCCESS，失败返回对应的错误代码
+ */
+int start_scan(std::string dir_path);
 
 /*
+ * @brief 扫描结果清理函数，将清理扫描的一切结果
+ * @return 成功返回SUCCESS，失败返回对应的错误代码
+ */
+int clear_scan_result();
+/*
  * @brief 获取目录下所有的文件名，不获取目录名
- * @details 实现时如果使用了系统依赖的函数需要使用相关的宏来区分
  * @param dir_path 目录路径
  * @param file_name_list 传入用于存放文件名的链表
  * @return 成功返回列表中文件数量个数，失败返回FAIL
  */
-int get_dir_filename(const std::string dir_path, std::list<std::string> &file_name_list);
+size_t get_dir_filename(const std::string dir_path, std::list<std::string> &file_name_list);
 
 /*
  * @brief 获取目录下所有的目录名，不获取文件名
- * @details 实现时如果使用了系统依赖的函数需要使用相关的宏来区分
  * @param dir_path 目录路径
  * @param file_name_list 传入用于存放目录名的链表
  * @return 成功返回列表中数量个数，失败返回FAIL
  */
-int get_dir_dirname(const std::string dir_path, std::list<std::string> &dir_name_list);
+size_t get_dir_dirname(const std::string dir_path, std::list<std::string> &dir_name_list);
 
 /*
  * @brief 依次打印列表中的文件名,不递归子目录

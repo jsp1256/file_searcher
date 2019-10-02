@@ -2,9 +2,9 @@
 
 int pattern_match(const char *str, const char *pattern)
 {
-	int str_num, pattern_num;
-	int str_size = strlen(str);
-	int pattern_size = strlen(pattern);
+    size_t str_num, pattern_num;
+    size_t str_size = strlen(str);
+    size_t pattern_size = strlen(pattern);
 
 	//特殊处理，模板串或字符串为空。
 	if(!pattern_size || !str_size)
@@ -38,7 +38,7 @@ int pattern_match(const char *str, const char *pattern)
 	}
 
 	if (pattern_num == pattern_size) {
-		return SUCCESS;
+        return 0;
 	}
-	return FAIL;
+    return -1;
 }

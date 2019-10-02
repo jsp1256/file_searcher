@@ -7,6 +7,18 @@ if(NOT BUILD_ROOT)
 endif(NOT BUILD_ROOT)
 message(STATUS "you set build root ${BUILD_ROOT}")
 
+#检查系统环境
+MESSAGE(STATUS "operation system is ${CMAKE_SYSTEM}")
+IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    MESSAGE(STATUS "current platform: Linux ")
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    MESSAGE(STATUS "current platform: Windows")
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+    MESSAGE(STATUS "current platform: FreeBSD")
+ELSE ()
+    MESSAGE(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
+ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+
 ##初始化设置各前缀变量
 set(PROJECT_NAME file_searcher)
 set(FILE_SEARCHER_INCLUDE_DIR ${BUILD_ROOT}/include)
@@ -16,7 +28,10 @@ set(EXECUTABLE_OUTPUT_PATH ${BUILD_ROOT}/exec)
 set(FILE_SEARCHER_LIBRARY_DIR ${BUILD_ROOT}/lib)
 
 #项目名
-project(${PROJECT_NAME})
+project(${PROJECT_NAME} LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 #查找在某个路径下的所有源文件,并将文件存放到其后的变量中
 aux_source_directory(${FILE_SEARCHER_SOURCE_DIR} FILE_SEARCHER_SRCS)
 #指示后者变量中的文件需要被编译成一个程序
