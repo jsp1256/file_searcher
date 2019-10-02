@@ -2,3 +2,7 @@
 *.a
 CMakeFiles/
 file_searcher
+CMakeLists.txt.user
+build/Makefile
+build/cmake_install.cmake
+build/CMakeCache.txt
