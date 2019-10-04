@@ -14,8 +14,9 @@ set(FILE_SEARCHER_INCLUDE_DIR ${BUILD_ROOT}/include)
 set(FILE_SEARCHER_SOURCE_DIR ${BUILD_ROOT}/src)
 set(FILE_SEARCHER_SOURCE_LIBRARY_DIR ${BUILD_ROOT}/src/lib)
 set(EXECUTABLE_OUTPUT_PATH ${BUILD_ROOT}/exec)
-#设置库文件查找目录(依赖库保留，目前应该是用不到)
-set(FILE_SEARCHER_LIBRARY_DIR ${BUILD_ROOT}/lib)
+set(LIBRARY_OUTPUT_PATH ${BUILD_ROOT}/exec/lib)
+#设置库文件查找目录
+set(FILE_SEARCHER_LIBRARY_DIR ${BUILD_ROOT}/exec/lib)
 
 #项目名
 project(${PROJECT_NAME})
@@ -35,27 +36,27 @@ include_directories(
 	${FILE_SEARCHER_INCLUDE_DIR}
 )
 
-#用到的依赖库(依赖库保留，目前应该是用不到)
+#用到的依赖库
 #set(LIBRARY_DEPENDCY_LIST
-#	libz.so.1
+#	search
 #)
-#依赖库查找路径(依赖库保留，目前应该是用不到)
+#依赖库查找路径
 #set(LIBRARY_DEPENDCY_SEARCH_DIR
-#	/lib/x86_64-linux-gnu
+#	${FILE_SEARCHER_LIBRARY_DIR}
 #)
 
-#使用find_library来查找共享库(依赖库保留，目前应该是用不到)
+#使用find_library来查找共享库
 #foreach(LIB_TO_FIND ${LIBRARY_DEPENDCY_LIST})
 #	find_library(LIB${LIB_TO_FIND}_PATH ${LIB_TO_FIND} PATHS ${LIBRARY_DEPENDCY_SEARCH_DIR} NO_DEFAULT_PATH)
-#	message(${LIB_TO_FIND})
 #	if(NOT LIB${LIB_TO_FIND}_PATH)
 #		message(FATAL_ERROR "${LIB_TO_FIND} need but not found")
-#	endif(NOT LIB${LIB_TO_FIND}_PATH) 
+#	endif(NOT LIB${LIB_TO_FIND}_PATH)
 #	message(STATUS ${LIB_TO_FIND} " found")
-#	set(LIB_LINK_PATH ${LIB_LINK_PATH} LIB${LIB_TO_FIND}_PATH)
+#	set(LIB_LINK_PATH ${LIB_LINK_PATH} ${LIB${LIB_TO_FIND}_PATH})
 #endforeach(LIB_TO_FIND)
-#设置链接库(依赖库保留，目前应该是用不到)
-#target_link_libraries(${PROJECT_NAME} ${LIB_LINK_PATH})
+#设置链接库
+#link_directories(${BUILD_ROOT}/exec/lib)
+target_link_libraries(${PROJECT_NAME} ${LIBRARY_MAIN_NAME} ${LIB_LINK_PATH})
 
 
 
