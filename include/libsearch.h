@@ -67,11 +67,11 @@ int write_to_xlsx_file(const std::string xlsx_file_path, const void *data, const
 /*
  * @brief 根据后缀名查找文件，例如：exe查早后缀为.exe的文件
  * @param file_name_list 待查找的文件列表
- * @param extension 后缀名
+ * @param extension 后缀名，例如："exe"
  * @param file_name_list_find 查找到的文件存储列表
  * @return 成功返回查找到的文件个数，失败返回-1
  */
-int scan_files_by_extension(const std::string &file_name_list, const std::string extension, std::string &file_name_list_find);
+size_t scan_files_by_extension(const std::list<std::string> &file_name_list, const std::string extension, std::list<std::string> &file_name_list_find);
 
 /*
  * @brief 根据文件名查找文件，支持使用?或*正则匹配，?匹配一个，*匹配0到多个
@@ -80,5 +80,5 @@ int scan_files_by_extension(const std::string &file_name_list, const std::string
  * @param file_name_list_find 查找到的文件存储列表
  * @return 成功返回查找到的文件个数，失败返回-1
  */
-int search_file_by_name(const std::string &file_name_list, const std::string name, std::string &file_name_list_find);
+size_t search_file_by_name(const std::list<std::string> &file_name_list, const std::string name, std::list<std::string> &file_name_list_find);
 #endif //LIB_SEARCH_H

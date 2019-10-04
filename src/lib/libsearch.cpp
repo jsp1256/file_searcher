@@ -11,8 +11,8 @@
 
 #include <ctime>
 
-#include "lib_search.h"
-#include "lib_str.h"
+#include "libsearch.h"
+#include "libstr.h"
 
 using namespace std;
 
@@ -113,7 +113,7 @@ static func_status scan_one_dir(file_store_st &dir_node)
 #elif USE_WINDOWS_COMMON
 /*
  * @brief 根据给定的dir_node，列出一个目录下所有的文件
- * @detail Windows系统依赖,未验证
+ * @detail Windows系统依赖
  * @param  dir_node 存储节点
  * @return 成功返回SUCCESS，错误返回对应的错误代码
  */
@@ -163,7 +163,7 @@ static func_status recursion_scan_dir_file(file_store_st &dir_node)
     return SUCCESS;
 }
 
-int start_scan(string dir_path)
+int start_scan(const string dir_path)
 {
     init_node(dir_path);
     return recursion_scan_dir_file(*g_node);
@@ -180,7 +180,7 @@ int clear_scan_result(){
  * @param pre 父节点暂存指针，首次搜索置nullptr
  * @return 找到返回对应存储结构指针，失败返回nullptr
  */
-file_store_st* find_node_by_path(string dir_absolute_path, file_store_st *pre)
+file_store_st* find_node_by_path(const string dir_absolute_path, file_store_st *pre)
 {
     if(nullptr == pre)
         pre = g_node;
@@ -241,16 +241,18 @@ int write_to_xlsx_file(const string xlsx_file_path, const void *data, const stri
     return size;
 }
 
-int scan_files_by_extension(const string &file_name_list, const string extension, string &file_name_list_find)
+inline size_t scan_files_by_extension(const list<string> &file_name_list, const string extension, list<string> &file_name_list_find)
 {
-    //TODO need to finish
-    int size = FAIL;
-    return size;
+    return search_file_by_name(file_name_list, string("*.").append(extension), file_name_list_find);
 }
 
-int search_file_by_name(const string &file_name_list, const string name, string &file_name_list_find)
+size_t search_file_by_name(const list<string> &file_name_list, const string name, list<string> &file_name_list_find)
 {
-    //TODO need to finish
-    int size = FAIL;
-    return size;
+    list<string>::const_iterator it;
+    file_name_list_find.clear();
+    for(it = file_name_list.begin(); it != file_name_list.end(); it++){
+        if(pattern_match(it->data(), name.data()))
+            file_name_list_find.push_back(*it);
+    }
+    return file_name_list_find.size();
 }

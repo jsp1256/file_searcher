@@ -1,4 +1,4 @@
-#include "lib_str.h"
+#include "libstr.h"
 
 int pattern_match(const char *str, const char *pattern)
 {
